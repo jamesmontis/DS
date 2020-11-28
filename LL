@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode() : val(0), next(nullptr) {}
+      ListNode(int x) : val(x), next(nullptr) {}
+      ListNode(int x, ListNode *next) : val(x), next(next) {}
+ };
+ 
+ class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* curr=head;
+        ListNode* next=NULL;
+        ListNode* prev=NULL;
+        while(curr!=NULL)
+        {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+        return head;
+    }
+};
+
+int main(){
+    ListNode *a,*b,*c;
+    a = new ListNode();
+    a->val = 1;
+    b = new ListNode();
+    b->val = 2;
+    a->next = b;
+    c = new ListNode();
+    c->val = 3;
+    b->next = c;
+    
+    cout << a->val << " " << a->next->val << " " << a->next->next->val << " ";
+
+    return 0;
+}
